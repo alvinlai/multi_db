@@ -71,7 +71,7 @@ module MultiDb
       def init_slaves
         [].tap do |slaves|
           ActiveRecord::Base.configurations.each do |name, values|
-            if name.to_s =~ /#{self.environment}_(slave_database.*)/
+            if name.to_s =~ /^#{self.environment}_(slave_database.*)/
               weight  = if values['weight'].blank?
                           1
                         else
